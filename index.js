@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Customer = require('./models/Customer')
+const Customer = require('./models/CustomerModel')
 
 
 
@@ -16,10 +16,17 @@ mongoose
 
 //add customer
 const addCustomer = (customer)=>{
-   Customer.create(customer)
-.then(()=>{
-console.log("New Customer created")
-})
+    if(customer){
+        console.log("Customer already exists")
+        return
+    }
+    else{
+        Customer.create(customer)
+        .then(()=>{
+        console.log("New Customer created")
+        }) 
+    }
+  
 }
 
 const newCustomer = {
