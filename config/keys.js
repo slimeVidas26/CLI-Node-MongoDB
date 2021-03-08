@@ -3,7 +3,7 @@ const dbuser = 'isaac';
 
 
   module.exports = {
-    mongoURI: `mongodb+srv://${dbuser}:${dbpassword}@cluster0.m86hq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+    mongoURI: `mongodb+srv://${dbuser}:${dbpassword}@cluster0.m86hq.mongodb.net/customers?retryWrites=true&w=majority`,
     secretOrKey: "secret"
   };
 

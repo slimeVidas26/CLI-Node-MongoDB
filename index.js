@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const customer = require('./models/Customer')
+const Customer = require('./models/Customer')
 
 
 
@@ -14,5 +14,20 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
+//add customer
+const addCustomer = (customer)=>{
+   Customer.create(customer)
+.then(()=>{
+console.log("New Customer created")
+})
+}
 
+const newCustomer = {
+    firstName  :"John",
+    lastName  :"Doe",
+    phone : "444-444-4444",
+    email : "john@gmail.com"
+}
+
+addCustomer(newCustomer);
 
