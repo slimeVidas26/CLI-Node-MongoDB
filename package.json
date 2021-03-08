@@ -1,0 +1,23 @@
+{
+  "name": "cli-node-mongodb",
+  "version": "1.0.0",
+  "description": "Build A Command Line Interface With Node.js & MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slimeVidas26/CLI-Node-MongoDB.git"
+  },
+  "keywords": [
+    "cli-nodes-mongoDb-commander-inquirer"
+  ],
+  "author": "traversy-media",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^7.1.0",
+    "inquirer": "^8.0.0",
+    "mongoose": "^5.11.19"
+  }
+}
