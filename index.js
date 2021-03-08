@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const customer = require('./models/Customer')
 
 
 
