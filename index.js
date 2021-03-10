@@ -21,6 +21,22 @@ const addCustomer = (customer)=>{
         //dbConnection.close()
         }) 
     }
+
+// find customer
+const findCustomers = (param)=>{
+    Customer.find( {$or : [{'firstName' : new RegExp(param , 'i')} , {'lastName' : new RegExp(param , 'i')}]})
+            .then((customer)=>{
+                 console.log(customer)
+            })
+}
+
+//findCustomer('john')
+
+// var data = 'Peter';
+
+// db.User.find({'name' : new RegExp(data, 'i')}, function(err, docs){
+//     cb(docs);
+// });
   
 
 // const newCustomer = {
@@ -33,5 +49,6 @@ const addCustomer = (customer)=>{
 // addCustomer(newCustomer);
 
 module.exports = {
-    addCustomer
+    addCustomer,
+    findCustomers
 }
