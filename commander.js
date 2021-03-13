@@ -8,7 +8,8 @@ program
 //add customer
 program
       .command('add <firstname> <lastname> <phone> <email>')
-      .alias('-a')
+      .alias('a')
+      .option('-a, --add', 'Add New Customer')
       .description('Add customer')
       .action((firstName , lastName , phone , email)=>{
         addCustomer({firstName , lastName , phone , email})
@@ -20,11 +21,13 @@ program
       .alias('-f')
       .description('Find customers')
       .action((param)=>{
-        findCustomers({param})
+        findCustomers({param})  
       })
 
 
-program.parse(process.argv)
+       program.parse(process.argv)
+
+     
 
 
 
