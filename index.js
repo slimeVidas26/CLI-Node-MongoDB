@@ -33,6 +33,14 @@ const findCustomer = (param)=>{
             })
 }
 
+// get  all customers
+const getAllCustomers = ()=>{
+  Customer.find()
+          .then((customers)=>{
+               console.log(customers)
+          })
+}
+
 //findCustomer('john')
 
 // var data = 'Peter';
@@ -53,5 +61,6 @@ const findCustomer = (param)=>{
 
 module.exports = {
     addCustomer,
-    findCustomer
+    findCustomer,
+    getAllCustomers
 }

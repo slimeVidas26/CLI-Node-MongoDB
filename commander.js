@@ -1,5 +1,5 @@
 const {program, description, action} = require('commander');
-const {addCustomer , findCustomer} = require('./index') 
+const {addCustomer , findCustomer , getAllCustomers} = require('./index') 
 
 program
        .version( require('./package.json').version)
@@ -25,6 +25,16 @@ program
       .action((param)=>{
         findCustomer({param})  
       })
+
+//get all customers
+program
+.command('getAll')
+.alias('ga')
+.option('-ga, --getAll', 'get all Customers')
+.description('Get list of customers')
+.action(()=>{
+  getAllCustomers()  
+})
 
 
        program.parse(process.argv)
