@@ -1,7 +1,8 @@
 const {program, description, action} = require('commander');
-const {addCustomer , findCustomers} = require('./index') 
+const {addCustomer , findCustomer} = require('./index') 
+
 program
-       .version('1.0.0')
+       .version( require('./package.json').version)
        .description('Client Managment System')
         
 
@@ -16,12 +17,13 @@ program
       })
 
       //find customer
-      program
+program
       .command('find <param>')
-      .alias('-f')
-      .description('Find customers')
+      .alias('f')
+      .option('-f, --find', 'Find Customer')
+      .description('Find customer')
       .action((param)=>{
-        findCustomers({param})  
+        findCustomer({param})  
       })
 
 

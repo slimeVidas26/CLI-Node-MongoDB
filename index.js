@@ -23,8 +23,11 @@ const addCustomer = (customer)=>{
     }
 
 // find customer
-const findCustomers = (param)=>{
-    Customer.find( {$or : [{'firstName' : new RegExp(param , 'i')} , {'lastName' : new RegExp(param , 'i')}]})
+const findCustomer = (param)=>{
+    Customer.findOne( {$or : [{'firstName' : new RegExp(param , 'i')} ,
+                           {'lastName' : new RegExp(param , 'i')}
+                          ]
+                          })
             .then((customer)=>{
                  console.log(customer)
             })
@@ -50,5 +53,5 @@ const findCustomers = (param)=>{
 
 module.exports = {
     addCustomer,
-    findCustomers
+    findCustomer
 }
