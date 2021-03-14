@@ -8,7 +8,7 @@ const db = require("./config/keys").mongoURI;
  mongoose
   .connect(  
     db,
-    { useNewUrlParser: true ,useUnifiedTopology: true }
+    { useNewUrlParser: true ,useUnifiedTopology: true ,  useFindAndModify: false  }
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
@@ -36,28 +36,30 @@ const findCustomer = (param)=>{
 // get  all customers
 const getAllCustomers = ()=>{
   Customer.find()
-          .then((customers)=>{
+          .then(customers=>{
                console.log(customers)
           })
 }
 
-//findCustomer('john')
-
-// var data = 'Peter';
-
-// db.User.find({'name' : new RegExp(data, 'i')}, function(err, docs){
-//     cb(docs);
-// });
+// update customer
+ const updateCustomer  = (_id ,expression)=>{
   
+   Customer.findByIdAndUpdate({_id},expression,
+    function(err, result){
 
-// const newCustomer = {
-//     firstName  :"Gilles",
-//     lastName  :"Dye",
-//     phone : "555-555-5555",
-//     email : "james@gmail.com"
-// }
+    if(err){
+        console.log(err)
+    }
+    else{
+        console.log(result)
+    }
+  
+  })
+}
 
-// addCustomer(newCustomer);
+
+updateCustomer("604935407904e25624fdbcdf" ,
+{firstName : "Samy" , lastName : "Dahandoo" , phone : "111-1111-111" , email : "samy@gmail.com"})
 
 module.exports = {
     addCustomer,
