@@ -42,27 +42,32 @@ const getAllCustomers = ()=>{
 }
 
 // update customer
- const updateCustomer  = (_id ,expression)=>{
+ const updateCustomer = (_id ,expression)=>{
   
-   Customer.findByIdAndUpdate({_id},expression,
-    function(err, result){
-
-    if(err){
-        console.log(err)
-    }
-    else{
-        console.log(result)
-    }
-  
+   Customer.findByIdAndUpdate({_id},expression)
+    .then(result=>{
+        console.info(result)
   })
 }
 
+// delete customer
+const deleteCustomer = (_id)=>{
+  
+  Customer.remove({_id})
+   .then(()=>{
+       console.info("Customer has been removed")
+ })
+}
 
-updateCustomer("604935407904e25624fdbcdf" ,
-{firstName : "Samy" , lastName : "Dahandoo" , phone : "111-1111-111" , email : "samy@gmail.com"})
+deleteCustomer("604935407904e25624fdbcdf")
+
+
+// updateCustomer("604935407904e25624fdbcdf" ,
+// {firstName : "Jimmy" , lastName : "Abitbot" , phone : "111-1111-111" , email : "jimmy@gmail.com"})
 
 module.exports = {
     addCustomer,
     findCustomer,
-    getAllCustomers
+    getAllCustomers,
+    updateCustomer
 }
