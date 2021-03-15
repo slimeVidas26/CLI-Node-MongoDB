@@ -1,5 +1,14 @@
 const {program, description, action} = require('commander');
-const {addCustomer , findCustomer , getAllCustomers} = require('./index') 
+const {addCustomer ,
+   findCustomer ,
+    getAllCustomers,
+    updateCustomer,
+    updateFirstName,
+    updateLastName,
+    updatePhone,
+    updateEmail,
+    deleteCustomer
+  } = require('./index') 
 
 program
        .version( require('./package.json').version)
@@ -36,8 +45,37 @@ program
   getAllCustomers()  
 })
 
+program
+.option('-u, --update', 'update Customer')
+.option('-fn, --firstname', 'update Customer FirstName')
+.option('-ln, --lastname', 'update Customer LastName')
+.option('-ph, --phone', 'update Customer Phone')
+.option('-em, --email', 'update Customer Email')
 
-       program.parse(process.argv)
+var options = program.opts()
+console.log(options)
+var firstName = options.firstName;
+var lastName = options.lastName;
+var phone = options.phone;
+var email = options.email;
+
+//update customer
+program
+      .command('update <_id>  <param>')
+      .alias('u')
+      
+      .description('Update customer')
+       .action((_id ,param)=>{
+  if(firstName) updateFirstName(_id ,param)  
+  else if(lastName) updateLastName(_id , param)
+  else if(phone) updatePhone(_id , param)
+  else if(email)  updateEmail(_id , param)
+      })
+
+
+ program.parse(process.argv)
+
+ 
 
      
 
