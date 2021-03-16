@@ -3,10 +3,7 @@ const {addCustomer ,
    findCustomer ,
     getAllCustomers,
     updateCustomer,
-    updateFirstName,
-    updateLastName,
-    updatePhone,
-    updateEmail,
+    
     deleteCustomer
   } = require('./index') 
 
@@ -32,7 +29,7 @@ program
       .option('-f, --find', 'Find Customer')
       .description('Find customer')
       .action((param)=>{
-        findCustomer({param})  
+        findCustomer(param)  
       })
 
 //get all customers
@@ -53,24 +50,28 @@ program
 .option('-em, --email', 'update Customer Email')
 
 var options = program.opts()
-console.log(options)
+
 var firstName = options.firstName;
 var lastName = options.lastName;
 var phone = options.phone;
 var email = options.email;
 
+console.log(options)
+
 //update customer
 program
-      .command('update <_id>  <param>')
+      .command('update <_id> <firstname> <lastname> <phone> <email> ') 
       .alias('u')
-      
       .description('Update customer')
-       .action((_id ,param)=>{
-  if(firstName) updateFirstName(_id ,param)  
-  else if(lastName) updateLastName(_id , param)
-  else if(phone) updatePhone(_id , param)
-  else if(email)  updateEmail(_id , param)
-      })
+      .action((_id ,firstName , lastName , phone , email)=> updateCustomer(_id,firstName , lastName , phone , email))
+    
+      
+program
+      .command('remove <_id>')
+      .alias('r')
+      .description('Remove customer')
+      .action((_id)=> deleteCustomer(_id))
+    
 
 
  program.parse(process.argv)

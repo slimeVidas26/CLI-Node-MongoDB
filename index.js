@@ -41,15 +41,45 @@ const getAllCustomers = ()=>{
           })
 }
 
-// update customer
- const updateCustomer = (_id ,customer)=>{
-   Customer.findByIdAndUpdate({_id},customer)
-    .then(customer=>{
-      console.info("customer updated")
-        console.info(customer)
+
+
+// // update customer
+//  const updateCustomer = (_id ,...args)=>{
+//    console.log(args)
+//     // args.forEach((item)=>{console.log({item})})
+//    Customer.findByIdAndUpdate({_id},args[0]) 
+//     .then(customer=>{
+//       console.info("customer updated")   
+//         console.info(customer)
+//         //db.close()
+//   })  
+// }
+
+//update customer
+const updateCustomer = (_id , fName , lName , phn , eml)=>{
+  //const target = {};
+const source = { firstName : fName , lastName : lName , phone : phn , email : eml };
+const returnedTarget = Object.assign({}, source);
+//console.log(target);
+console.log(returnedTarget);
+
+Customer.findByIdAndUpdate({_id},returnedTarget) 
+     .then(customer=>{
+       console.info("customer updated")   
+         console.info(customer)
         //db.close()
-  })
+   })  
+
 }
+
+// updateCustomer("60493a6706b3a427e4a37545" , "isaac" , "dahan" , "88-88-88" , "isaac@gmail.com" )
+
+//  updateCustomer("60493a6706b3a427e4a37545" ,    
+//                  {firstName : "Jilian" ,
+//                   lastName : "KING",
+//                   phone : "888-888-8888",
+//                   email : "king@gmail.com"})        
+          
 
 // update firstName customer
 const updateFirstName = (_id ,newFirstName)=>{
@@ -63,7 +93,7 @@ const updateFirstName = (_id ,newFirstName)=>{
 
 // update lastName customer
 const updateLastName = (_id ,newLastName)=>{
-  Customer.findByIdAndUpdate({_id},{lastName : newlastName})
+  Customer.findByIdAndUpdate({_id},{lastName : newLastName})
    .then(customer=>{
      console.info("customer lastName updated")
        console.info(customer)
@@ -92,8 +122,7 @@ const updateEmail = (_id ,newEmail)=>{
 }
 
 
-//updateFirstName("60493a6706b3a427e4a37545" , "Alexico")
-//updateEmail("60493a6706b3a427e4a37545" , "alexico@gmail.com")
+// b
 
 
 // delete customer
@@ -107,8 +136,7 @@ const deleteCustomer = (_id)=>{
 //deleteCustomer("604935407904e25624fdbcdf")
 
 
-//  updateCustomer("60493a6706b3a427e4a37545" ,
-//  {firstName : "Alex" , lastName : "Gogo" , phone : "111-1111-111" , email : "thomas@gmail.com"})
+
 
 
 module.exports = {
