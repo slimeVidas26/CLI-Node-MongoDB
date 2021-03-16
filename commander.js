@@ -1,9 +1,8 @@
-const {program, description, action} = require('commander');
+const {program} = require('commander');
 const {addCustomer ,
    findCustomer ,
     getAllCustomers,
     updateCustomer,
-    
     deleteCustomer
   } = require('./index') 
 
@@ -49,14 +48,7 @@ program
 .option('-ph, --phone', 'update Customer Phone')
 .option('-em, --email', 'update Customer Email')
 
-var options = program.opts()
 
-var firstName = options.firstName;
-var lastName = options.lastName;
-var phone = options.phone;
-var email = options.email;
-
-console.log(options)
 
 //update customer
 program

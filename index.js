@@ -13,7 +13,9 @@ const db = require("./config/keys").mongoURI;
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
-//add customer
+
+ //////////////////// CRUD FUNCTIONS/////////////////////////
+  //add customer
 const addCustomer = (customer)=>{
         Customer.create(customer)
         .then(()=>{
@@ -41,26 +43,10 @@ const getAllCustomers = ()=>{
           })
 }
 
-
-
-// // update customer
-//  const updateCustomer = (_id ,...args)=>{
-//    console.log(args)
-//     // args.forEach((item)=>{console.log({item})})
-//    Customer.findByIdAndUpdate({_id},args[0]) 
-//     .then(customer=>{
-//       console.info("customer updated")   
-//         console.info(customer)
-//         //db.close()
-//   })  
-// }
-
 //update customer
-const updateCustomer = (_id , fName , lName , phn , eml)=>{
-  //const target = {};
-const source = { firstName : fName , lastName : lName , phone : phn , email : eml };
+const updateCustomer = (_id , firstName , lastName , phone , email)=>{
+const source = { firstName , lastName ,phone ,email };
 const returnedTarget = Object.assign({}, source);
-//console.log(target);
 console.log(returnedTarget);
 
 Customer.findByIdAndUpdate({_id},returnedTarget) 
@@ -72,59 +58,8 @@ Customer.findByIdAndUpdate({_id},returnedTarget)
 
 }
 
-// updateCustomer("60493a6706b3a427e4a37545" , "isaac" , "dahan" , "88-88-88" , "isaac@gmail.com" )
-
-//  updateCustomer("60493a6706b3a427e4a37545" ,    
-//                  {firstName : "Jilian" ,
-//                   lastName : "KING",
-//                   phone : "888-888-8888",
-//                   email : "king@gmail.com"})        
-          
-
-// update firstName customer
-const updateFirstName = (_id ,newFirstName)=>{
-  Customer.findByIdAndUpdate({_id},{firstName : newFirstName})
-   .then(customer=>{
-     console.info("customer firstName updated")
-       console.info(customer)
-       //db.close()
- })
-}
-
-// update lastName customer
-const updateLastName = (_id ,newLastName)=>{
-  Customer.findByIdAndUpdate({_id},{lastName : newLastName})
-   .then(customer=>{
-     console.info("customer lastName updated")
-       console.info(customer)
-       //db.close()
- })
-}
-
-// update lastName customer
-const updatePhone = (_id ,newPhone)=>{
-  Customer.findByIdAndUpdate({_id},{phone : newPhone})
-   .then(customer=>{
-     console.info("customer phone updated")
-       console.info(customer)
-       //db.close()
- })
-}
-
-// update email customer
-const updateEmail = (_id ,newEmail)=>{
-  Customer.findByIdAndUpdate({_id},{email : newEmail})
-   .then(customer=>{
-     console.info("customer email updated")
-       console.info(customer)
-       //db.close()
- })
-}
-
-
-// b
-
-
+      
+      
 // delete customer
 const deleteCustomer = (_id)=>{
   Customer.remove({_id})
@@ -133,20 +68,11 @@ const deleteCustomer = (_id)=>{
  })
 }
 
-//deleteCustomer("604935407904e25624fdbcdf")
-
-
-
-
 
 module.exports = {
     addCustomer,
     findCustomer,
     getAllCustomers,
     updateCustomer,
-    updateFirstName,
-    updateLastName,
-    updatePhone,
-    updateEmail,
     deleteCustomer
 }
